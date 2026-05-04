@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matches | Soulence</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      min-height: 100vh;
+      padding-bottom: 100px;
+    }
+
+    /* Header */
+    .matches-header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .back-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-btn i {
+      font-size: 28px;
+      color: #000;
+    }
+
+    .header-title {
+      font-size: 32px;
+      font-weight: 600;
+      color: #000;
+      margin: 0;
+    }
+
+    /* Subtitle */
+    .matches-subtitle {
+      padding: 0 20px 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .matches-count {
+      color: #d946ef;
+      font-weight: 600;
+    }
+
+    /* Match Cards Grid */
+    .matches-grid {
+      padding: 0 15px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .match-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .match-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .match-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Gradient overlay */
+    .match-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, 
+        rgba(0,0,0,0) 0%, 
+        rgba(0,0,0,0) 40%,
+        rgba(147, 51, 234, 0.3) 70%,
+        rgba(147, 51, 234, 0.8) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px;
+    }
+
+    /* 100% Match badge */
+    .match-badge {
+      align-self: center;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 20px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Location tag */
+    .location-tag {
+      align-self: center;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 15px;
+      border-radius: 15px;
+      margin-bottom: 5px;
+    }
+
+    /* Name and age */
+    .match-info {
+      text-align: center;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .match-info .online-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #00ff88;
+      border-radius: 50%;
+      margin-left: 5px;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid #eee;
+      padding: 10px 30px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-radius: 25px 25px 0 0;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-item:hover {
+      color: #ff6b9d;
+    }
+
+    .nav-item.active {
+      color: #ff6b9d;
+    }
+
+    .nav-item i {
+      font-size: 26px;
+    }
+
+    /* Center Match Button Container */
+    .nav-center {
+      position: relative;
+      margin-top: -40px;
+    }
+
+    /* Glowing ring animation */
+    .match-btn-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #ff6b9d, #ff8fab, #f9a8f9, #ff6b9d);
+      animation: rotate 3s linear infinite;
+      filter: blur(8px);
+      opacity: 0.6;
+    }
+
+    .match-btn-ring::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    @keyframes rotate {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Pulsing glow effect */
+    .match-btn-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #ff6b9d;
+      filter: blur(15px);
+      animation: pulse-glow 2s ease-in-out infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
+    }
+
+    .match-btn {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #ff6b9d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.3s;
+    }
+
+    .match-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .match-btn .heart-logo {
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .match-btn span {
+      font-size: 9px;
+      color: #ff6b9d;
+      font-weight: 600;
+      margin-top: -2px;
+    }
+
+    /* Active nav item (matches) */
+    .nav-item.matches-active {
+      color: #d946ef;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .header-title {
+        font-size: 26px;
+      }
+
+      .matches-subtitle {
+        font-size: 16px;
+      }
+
+      .match-card {
+        border-radius: 15px;
+      }
+
+      .match-badge {
+        font-size: 9px;
+        padding: 5px 12px;
+      }
+
+      .location-tag {
+        font-size: 10px;
+        padding: 3px 12px;
+      }
+
+      .match-info {
+        font-size: 13px;
+      }
+
+      .bottom-nav {
+        padding: 10px 20px 15px;
+      }
+
+      .nav-item {
+        width: 45px;
+        height: 45px;
+      }
+
+      .nav-item i {
+        font-size: 24px;
+      }
+
+      .match-btn {
+        width: 65px;
+        height: 65px;
+      }
+
+      .match-btn .heart-logo {
+        font-size: 28px;
+      }
+
+      .match-btn-ring {
+        width: 85px;
+        height: 85px;
+      }
+
+      .match-btn-glow {
+        width: 75px;
+        height: 75px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .matches-grid {
+        max-width: 900px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="matches-header">
+    <button class="back-btn" onclick="goBack()">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+    <h1 class="header-title">Matches</h1>
+  </div>
+
+  <!-- Subtitle -->
+  <div class="matches-subtitle">
+    Your Matches <span class="matches-count">20</span>
+  </div>
+
+  <!-- Matches Grid - 3 per row -->
+  <div class="container-fluid">
+    <div class="row matches-grid g-3">
+      <!-- Kenneth -->
+      <div class="col-4">
+        <div class="match-card">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop" alt="Kenneth">
+          <div class="match-overlay">
+            <span class="match-badge">100% Match</span>
+            <div>
+              <span class="location-tag">Manila</span>
+              <div class="match-info">Kenneth, 22<span class="online-dot"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ivan Dervin -->
+      <div class="col-4">
+        <div class="match-card">
+          <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=500&fit=crop" alt="Ivan Dervin">
+          <div class="match-overlay">
+            <span class="match-badge">100% Match</span>
+            <div>
+              <span class="location-tag">Batangas</span>
+              <div class="match-info">Ivan Dervin, 21<span class="online-dot"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Niño -->
+      <div class="col-4">
+        <div class="match-card">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop" alt="Niño">
+          <div class="match-overlay">
+            <span class="match-badge">100% Match</span>
+            <div>
+              <span class="location-tag">Laguna</span>
+              <div class="match-info">Niño, 21<span class="online-dot"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bryan -->
+      <div class="col-4">
+        <div class="match-card">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=400&h=500&fit=crop" alt="Bryan">
+          <div class="match-overlay">
+            <span class="match-badge">100% Match</span>
+            <div>
+              <span class="location-tag">Mexico</span>
+              <div class="match-info">Bryan, 20<span class="online-dot"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kevin -->
+      <div class="col-4">
+        <div class="match-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop" alt="Kevin">
+          <div class="match-overlay">
+            <span class="match-badge">100% Match</span>
+            <div>
+              <span class="location-tag">Morocco</span>
+              <div class="match-info">Kevin, 22<span class="online-dot"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clint -->
+      <div class="col-4">
+        <div class="match-card">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop" alt="Clint">
+          <div class="match-overlay">
+            <span class="match-badge">100% Match</span>
+            <div>
+              <span class="location-tag">Poland</span>
+              <div class="match-info">Clint, 20<span class="online-dot"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="/dashboard/index.html" class="nav-item">
+      <i class="bi bi-house-fill"></i>
+    </a>
+    
+    <a href="/EMAIL CODE/discover/discover.html" class="nav-item">
+      <i class="bi bi-compass"></i>
+    </a>
+    
+    <div class="nav-center">
+      <div class="match-btn-glow"></div>
+      <div class="match-btn-ring"></div>
+      <button class="match-btn" onclick="goToMatch()">
+        <span class="heart-logo">💘</span>
+        <span>Match-me</span>
+      </button>
+    </div>
+    
+    <a href="#" class="nav-item matches-active">
+      <i class="bi bi-people-fill"></i>
+    </a>
+    
+    <a href="/messages/message.html" class="nav-item">
+      <i class="bi bi-chat"></i>
+    </a>
+  </nav>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function goToMatch() {
+      // Navigate to matching scanner
+      window.location.href = '/EMAIL CODE/welcome back/welcome.html';
+    }
+
+    // Add click handlers to match cards
+    document.querySelectorAll('.match-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const name = this.querySelector('.match-info').textContent;
+        console.log('Clicked on:', name);
+        // Navigate to profile or chat
+      });
+    });
+  </script>
+</body>
+</html>
