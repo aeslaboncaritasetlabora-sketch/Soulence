@@ -1,0 +1,203 @@
+:root{
+  --bg:#ffffff;
+  --muted:#6b7280;
+  --card-bg:#ffffff;
+  --accent:#8421a8;
+  --radius:14px;
+  --max-width:980px;
+  --glass: rgba(255,255,255,0.6);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  background: linear-gradient(180deg,#FBFBFD 0%, #FFF 100%);
+  color:#000000;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+.topbar{
+  background:transparent;
+  padding:14px 18px;
+  border-bottom:1px solid rgba(36, 15, 42, 0.04);
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter: blur(6px);
+}
+.topbar-inner{
+  max-width:var(--max-width);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.back-btn{
+  background:transparent;
+  border:0;
+  padding:8px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  color:var(--accent);
+}
+.brand img{display:block;height:36px;width:36px;border-radius:8px}
+.spacer{flex:1}
+.top-actions{display:flex; gap:12px; align-items:center}
+.top-actions .link{color:var(--muted); text-decoration:none; font-weight:600}
+.top-actions .button{
+  background:linear-gradient(90deg,#c33aed,#bf06d4);
+  color:white;
+  padding:8px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 6px 20px rgba(184, 99, 241, 0.15);
+}
+
+.container{
+  max-width:var(--max-width);
+  margin:28px auto;
+  padding:0 18px 60px;
+}
+
+.hero{
+  background:linear-gradient(90deg,rgba(194, 99, 241, 0.06), rgba(164, 6, 212, 0.02));
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 6px 14px rgba(36, 15, 42, 0.03);
+}
+.hero h1{
+  margin:0;
+  font-size:20px;
+  letter-spacing:-0.01em;
+  color:#000000;
+}
+.hero .muted{margin-top:4px;color:var(--muted);font-size:13px}
+.hero-desc{margin-top:12px;color:#000000;font-size:14px}
+
+.toc-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-top:8px;
+}
+
+.term-card{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  padding:18px;
+  background:var(--card-bg);
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(18, 2, 23, 0.04);
+  border:1px solid rgba(41, 15, 42, 0.04);
+  color:#000000;
+}
+.term-icon{
+  width:56px;
+  height:56px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  flex:0 0 56px;
+  font-weight:700;
+}
+.term-icon svg{position:absolute; inset:0; width:100%; height:100%}
+.icon-label{
+  position:relative;
+  font-size:14px;
+  color:#000000;
+  z-index:1;
+}
+.term-content h3{
+  margin:0 0 6px 0;
+  font-size:16px;
+  color:#000000;
+}
+.term-content p{margin:0 0 8px 0; color:#000000}
+.term-content ul{
+  margin:8px 0 0 16px;
+  padding:0;
+  color:var(--muted);
+}
+.term-content li{margin:6px 0; font-size:14px; color:#000000}
+
+.contact-card{
+  margin-top:18px;
+  border-radius:14px;
+  overflow:hidden;
+}
+.contact-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  padding:18px;
+  background:linear-gradient(135deg,#d53aed 0%, #9a06d4 100%);
+  color:white;
+  box-shadow:0 14px 40px rgba(205, 99, 241, 0.12);
+}
+.contact-inner h2{margin:0;font-size:18px;color:white}
+.contact-inner p{margin:6px 0 0 0;opacity:0.95;color:white}
+.contact-actions .button{background:rgba(255,255,255,0.12); color:white; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:600}
+.contact-actions .button.light{background:rgba(255,255,255,0.14)}
+
+.site-footer{
+  margin-top:22px;
+  padding:18px;
+  border-radius:10px;
+  background:transparent;
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.muted{color:var(--muted);font-size:13px}
+
+@media(min-width:760px){
+  .toc-grid{grid-template-columns:1fr; gap:14px}
+  .term-card{padding:20px}
+}
+@media(min-width:980px){
+  .toc-grid{grid-template-columns:1fr; gap:14px}
+  .container{padding:0 24px 80px}
+}
+
+.term-card:nth-child(odd) .term-icon svg{opacity:0.95}
+
+.status-btn {
+  font-weight: 700;
+  font-size: 17px;
+  padding: 8px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  color: #000000; 
+}
+
+.status-btn.block {
+  background-color: #ff4d4f; 
+  color: #000000;
+}
+
+.status-btn.unblock {
+  background-color: #4caf50; 
+}
+
+.status-btn:hover {
+  opacity:0.9;
+}

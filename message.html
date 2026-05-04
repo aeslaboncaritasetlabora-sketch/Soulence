@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soulence Messages</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- SweetAlert2 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="desktop-shell">
+    <div class="desktop-window">
+      <!-- Messages List View -->
+      <div id="messages-view" class="view active">
+    <header class="msg-header">
+      <button id="btn-back" class="icon-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1>Messages</h1>
+      <button id="btn-search" class="icon-btn">
+        <i class="fas fa-search"></i>
+      </button>
+    </header>
+
+    <section class="recent-section">
+      <p class="recent-label">Recent Matches</p>
+      <div class="recent-scroll">
+        <div class="recent-item active" data-name="Sophia" data-avatar="https://i.pinimg.com/1200x/05/36/b6/0536b667ae588f427fbc6a802c7f6764.jpg">
+          <img src="https://i.pinimg.com/1200x/05/36/b6/0536b667ae588f427fbc6a802c7f6764.jpg" alt="Sophia">
+          <span class="online-badge"></span>
+          <p>Sophia</p>
+        </div>
+        <div class="recent-item" data-name="Emma" data-avatar="https://i.pinimg.com/736x/d5/79/14/d57914a1d4b70257509c88b7b868ff39.jpg">
+          <img src="https://i.pinimg.com/736x/d5/79/14/d57914a1d4b70257509c88b7b868ff39.jpg" alt="Emma">
+          <p>Emma</p>
+        </div>
+        <div class="recent-item" data-name="Olivia" data-avatar="https://i.pinimg.com/736x/82/fc/b1/82fcb1e501cfc81d0c460f5e31f4fcce.jpg">
+          <img src="https://i.pinimg.com/736x/82/fc/b1/82fcb1e501cfc81d0c460f5e31f4fcce.jpg" alt="Olivia">
+          <span class="online-badge"></span>
+          <p>Olivia</p>
+        </div>
+        <div class="recent-item" data-name="Ava" data-avatar="https://i.pinimg.com/736x/4d/a7/5b/4da75ba14f195d4162730678b0e27822.jpg">
+          <img src="https://i.pinimg.com/736x/4d/a7/5b/4da75ba14f195d4162730678b0e27822.jpg" alt="Ava">
+          <p>Ava</p>
+        </div>
+      </div>
+    </section>
+
+    <main class="msg-list">
+      <div class="msg-item unread" data-id="1" data-name="Clark Rivera" data-avatar="https://i.pinimg.com/736x/18/ab/b6/18abb6970ea27220b07e2499db994ab0.jpg">
+        <div class="avatar-wrap">
+          <img src="https://i.pinimg.com/736x/18/ab/b6/18abb6970ea27220b07e2499db994ab0.jpg" alt="Clark">
+          <span class="online-dot"></span>
+        </div>
+        <div class="msg-content">
+          <div class="msg-row">
+            <h6>Clark Rivera</h6>
+            <span class="time">08:30</span>
+          </div>
+          <p>How are you? <span class="unread-badge">1</span></p>
+        </div>
+      </div>
+
+      <div class="msg-item" data-id="2" data-name="Clint" data-avatar="https://i.pinimg.com/1200x/45/a0/3a/45a03ab0f8adb8762536f4723aa8d53f.jpg">
+        <div class="avatar-wrap">
+          <img src="https://i.pinimg.com/1200x/45/a0/3a/45a03ab0f8adb8762536f4723aa8d53f.jpg" alt="Clint">
+        </div>
+        <div class="msg-content">
+          <div class="msg-row">
+            <h6>Clint</h6>
+            <span class="time">Yesterday</span>
+          </div>
+          <p>Can we start again?</p>
+        </div>
+      </div>
+
+      <div class="msg-item" data-id="3" data-name="Martin" data-avatar="https://i.pinimg.com/1200x/3a/65/cd/3a65cdb725c44f6166257890d472e0ad.jpg">
+        <div class="avatar-wrap">
+          <img src="https://i.pinimg.com/1200x/3a/65/cd/3a65cdb725c44f6166257890d472e0ad.jpg" alt="Martin">
+          <span class="online-dot"></span>
+        </div>
+        <div class="msg-content">
+          <div class="msg-row">
+            <h6>Martin</h6>
+            <span class="time">2d ago</span>
+          </div>
+          <p>Sent a photo</p>
+        </div>
+      </div>
+    </main>
+
+    <nav class="bottom-nav message-bottom-nav">
+      <a href="/dashboard/index.html" class="nav-item nav-item-link active">
+        <i class="fas fa-home"></i>
+      </a>
+      <a href="/EMAIL CODE/discover/discover.html" class="nav-item nav-item-link">
+        <i class="far fa-compass"></i>
+      </a>
+      <a href="/M_Trial3/index.html" class="nav-item-link match-item">
+        <div class="match-icon">
+          <video class="match-video-icon" autoplay loop muted playsinline>
+            <source src="https://cdn-icons-mp4.flaticon.com/512/13099/13099799.mp4" type="video/mp4">
+          </video>
+          <span class="match-text">Match-me</span>
+        </div>
+      </a>
+      <a href="/matches/index.html" class="nav-item nav-item-link">
+        <i class="fas fa-user-friends"></i>
+      </a>
+      <a href="#" class="nav-item nav-item-link">
+        <i class="far fa-comment-dots"></i>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Chat View -->
+  <div id="chat-view" class="view">
+    <header class="chat-header">
+      <button id="btn-back-chat" class="icon-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      
+      <div class="chat-user">
+        <img id="chat-avatar" src="" alt="">
+        <div class="user-info">
+          <h6 id="chat-name"></h6>
+          <span class="status-text">Active now</span>
+        </div>
+      </div>
+
+      <div class="chat-actions">
+        <button id="btn-audio" class="action-btn" title="Voice Call">
+          <i class="fas fa-phone"></i>
+        </button>
+        <button id="btn-video" class="action-btn" title="Video Call">
+          <i class="fas fa-video"></i>
+        </button>
+        <button id="btn-more" class="action-btn" title="More Options">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat-body" id="chatBody">
+      <div class="chat-date">Today</div>
+    </div>
+
+    <!-- Chat Input - VM BUTTON ON RIGHT -->
+    <form class="chat-input" id="chatForm">
+      <button type="button" id="btn-gallery" class="input-btn">
+        <i class="fas fa-image"></i>
+      </button>
+      <button type="button" id="btn-camera" class="input-btn">
+        <i class="fas fa-camera"></i>
+      </button>
+      <button type="button" id="btn-voice" class="input-btn voice">
+        <i class="fas fa-microphone"></i>
+      </button>
+      <div class="input-wrap">
+        <input type="text" id="msgInput" placeholder="Aa" autocomplete="off">
+        <button type="button" id="btn-emoji" class="emoji-btn">
+          <i class="far fa-smile"></i>
+        </button>
+      </div>
+      <button type="button" id="btn-like" class="input-btn like">
+        <i class="fas fa-thumbs-up"></i>
+      </button>
+      <button type="submit" id="btn-send" class="input-btn send" style="display:none;">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+
+    <!-- Voice Recording Overlay -->
+    <div id="voice-overlay" class="voice-overlay hidden">
+      <div class="voice-recording">
+        <div class="voice-wave">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <p>Recording... <span id="voice-timer">0:00</span></p>
+        <button id="btn-stop-voice" class="voice-stop-btn">
+          <i class="fas fa-stop"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Voice Playback (Hidden audio element) -->
+    <audio id="voice-playback" style="display:none;"></audio>
+  </div>
+  </div>
+
+  <!-- More Options Menu - NO LIKE OPTION -->
+  <div id="more-menu" class="more-menu hidden">
+    <div class="menu-item" id="menu-block">
+      <i class="fas fa-ban"></i>
+      <span>Block</span>
+    </div>
+    <div class="menu-item hidden" id="menu-unblock">
+      <i class="fas fa-check-circle"></i>
+      <span>Unblock</span>
+    </div>
+    <div class="menu-item" id="menu-report">
+      <i class="fas fa-flag"></i>
+      <span>Report</span>
+    </div>
+    <div class="menu-item" id="menu-clear">
+      <i class="fas fa-trash"></i>
+      <span>Clear Chat</span>
+    </div>
+  </div>
+
+  <!-- Emoji Modal - CENTER OF SCREEN -->
+  <div id="emoji-modal" class="emoji-modal hidden">
+    <div class="emoji-modal-content">
+      <div class="emoji-modal-header">
+        <h5>Choose Emoji</h5>
+        <button id="btn-close-emoji" class="close-emoji-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="emoji-modal-body">
+        <emoji-picker></emoji-picker>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Call Overlay -->
+  <div id="audio-call-overlay" class="call-overlay audio-call">
+    <div class="call-bg"></div>
+    <div class="call-content">
+      <img id="audio-call-avatar" src="" alt="">
+      <h2 id="audio-call-name"></h2>
+      <p id="audio-call-status">Calling...</p>
+      
+      <!-- CALLING STATE - Green & Red Buttons (NAWAWALA PAG SINAGOT) -->
+      <div id="audio-calling-state" class="call-state calling">
+        <button id="btn-audio-decline" class="call-btn decline">
+          <i class="fas fa-phone-slash"></i>
+          <span>Decline</span>
+        </button>
+        <button id="btn-audio-answer" class="call-btn answer">
+          <i class="fas fa-phone"></i>
+          <span>Answer</span>
+        </button>
+      </div>
+
+      <!-- CONNECTED STATE - Mic, Speaker, End (LUMALABAS PAG SINAGOT) -->
+      <div id="audio-connected-state" class="call-state connected" style="display: none;">
+        <div class="call-wave">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="call-actions">
+          <button id="btn-audio-mute" class="call-btn">
+            <i class="fas fa-microphone"></i>
+            <span>Mute</span>
+          </button>
+          <button id="btn-audio-speaker" class="call-btn">
+            <i class="fas fa-volume-up"></i>
+            <span>Speaker</span>
+          </button>
+          <button id="btn-audio-end" class="call-btn end">
+            <i class="fas fa-phone-slash"></i>
+            <span>End</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Call Overlay -->
+  <div id="video-call-overlay" class="call-overlay video-call">
+    <div class="video-container">
+      <video id="remote-video" class="remote-video" autoplay playsinline></video>
+      <video id="local-video" class="local-video" autoplay muted playsinline></video>
+      
+      <div class="video-overlay-info">
+        <img id="video-call-avatar" src="" alt="">
+        <div>
+          <h2 id="video-call-name"></h2>
+          <p id="video-call-status">Calling...</p>
+        </div>
+      </div>
+
+      <!-- CALLING STATE - Green & Red Buttons (NAWAWALA PAG SINAGOT) -->
+      <div id="video-calling-state" class="video-call-state calling">
+        <button id="btn-video-decline" class="video-btn-big decline">
+          <i class="fas fa-phone-slash"></i>
+        </button>
+        <button id="btn-video-answer" class="video-btn-big answer">
+          <i class="fas fa-video"></i>
+        </button>
+      </div>
+
+      <!-- CONNECTED STATE - Mic, Cam, Flip, End (LUMALABAS PAG SINAGOT) -->
+      <div id="video-connected-state" class="video-call-state connected" style="display: none;">
+        <button id="btn-video-mute" class="video-btn">
+          <i class="fas fa-microphone"></i>
+        </button>
+        <button id="btn-video-cam" class="video-btn">
+          <i class="fas fa-video"></i>
+        </button>
+        <button id="btn-video-flip" class="video-btn">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+        <button id="btn-video-end" class="video-btn end">
+          <i class="fas fa-phone-slash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Modal -->
+  <div id="image-modal" class="image-modal hidden">
+    <button id="btn-close-image" class="close-image-btn">
+      <i class="fas fa-times"></i>
+    </button>
+    <img id="modal-image" src="" alt="">
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <!-- Emoji Picker -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+  <!-- Custom JS -->
+  <script src="message.js"></script>
+</body>
+</html>

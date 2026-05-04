@@ -1,0 +1,21 @@
+{
+    "liveServer.settings.port": 5501,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 33060,
+            "driver": "MySQL",
+            "name": "MySQL Local",
+            "database": "soulencedb",
+            "username": "root",
+            "password": "910072",
+            "connectionTimeout": 30
+        }
+    ]
+}

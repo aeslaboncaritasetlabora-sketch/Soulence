@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matching Scanner</title>
+  <link rel="stylesheet" href="/design/matching/matching.css" />
+</head>
+<body>
+  <div class="scanner">
+    <div id="match-screen" class="screen hidden">
+      <h2 class="match-title">Match</h2>
+      <div class="match-profiles">
+        <img src="/M_Trial3/asset/imsge/sample1.jpg" alt="Leiarrra" class="match-avatar" />
+        <div class="waveform-heart">❤️</div>
+        <img src="/M_Trial3/asset/imsge/sample3.jpg" alt="Joshua" class="match-avatar" />
+      </div>
+      <p class="match-note">Know when Joshua sent a message.</p>
+      <div class="match-buttons">
+        <button onclick="declineCall()" class="icon-button">❌</button>
+        <button onclick="acceptCall()" class="icon-button">😊</button>
+        <button onclick="editProfile()" class="icon-button">✏️</button>
+        <button onclick="openKeyboard()" class="icon-button">⌨️</button>
+      </div>
+      <button onclick="activateSoulLink()" class="soul-button">💞 SOULLINK</button>
+    </div>
+
+    <div class="center-circle">
+      <img src="/M_Trial3/asset/imsge/Soulence_Logo.png" alt="Center Photo" />
+      <span class="overlay-text"> Matching...</span>
+    </div>
+
+    <svg id="rings-svg" class="rings-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <g class="ring-group ring1">
+        <circle class="ring-path base" cx="300" cy="300" r="260" />
+      </g>
+
+      <g class="ring-group ring2">
+        <circle class="ring-path base" cx="300" cy="300" r="200" />
+      </g>
+
+      <g class="ring-group ring3">
+        <circle class="ring-path base" cx="300" cy="300" r="140" />
+      </g>
+    </svg>
+
+    <div id="profiles-container"></div>
+  </div>
+
+  <script src="/design/matching/matching.js"></script>
+</body>
+</html>
